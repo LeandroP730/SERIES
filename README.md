@@ -19,8 +19,8 @@ Aplicación Angular 17 que consume la [Rick and Morty API](https://rickandmortya
 
 ## Requisitos
 
-- Node.js 18+
-- Angular CLI 17+: `npm install -g @angular/cli`
+- Node.js 24.14.1
+- Angular CLI 21.2.5: `npm install -g @angular/cli`
 
 ---
 
