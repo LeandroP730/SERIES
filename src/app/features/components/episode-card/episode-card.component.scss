@@ -1,0 +1,85 @@
+.episode-card {
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: #6366f1;
+
+    .arrow {
+      transform: translateX(4px);
+      color: #818cf8;
+    }
+  }
+}
+
+.card-badge {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: #1e1b4b;
+
+  span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #c7d2fe;
+  }
+}
+
+.card-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  margin: 0;
+  color: #f1f5f9;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #64748b;
+  font-size: 0.8rem;
+
+  mat-icon {
+    font-size: 14px;
+    height: 14px;
+    width: 14px;
+    margin-right: 4px;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #1e293b;
+  padding-top: 8px;
+}
+
+.code {
+  font-family: monospace;
+  color: #6366f1;
+}
+
+.arrow {
+  transition: 0.2s;
+  color: #334155;
+}

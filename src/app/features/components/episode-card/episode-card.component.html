@@ -1,0 +1,33 @@
+<article
+  class="episode-card"
+  (click)="onCardClick()"
+  (keydown.enter)="onCardClick()"
+  tabindex="0"
+  role="button"
+  [attr.aria-label]="'Ver detalles de ' + episode().name"
+>
+  <div class="card-badge">
+    <span>T{{ seasonNumber }}</span>
+    <span>E{{ episodeNumber }}</span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="episode-name">{{ episode().name }}</h3>
+
+    <div class="episode-meta">
+      <span class="meta-item">
+        <mat-icon>calendar_today</mat-icon>
+        {{ episode().air_date }}
+      </span>
+      <span class="meta-item">
+        <mat-icon>people</mat-icon>
+        {{ episode().characters.length }} personajes
+      </span>
+    </div>
+
+    <div class="card-footer">
+      <span class="episode-code">{{ episode().episode }}</span>
+      <mat-icon class="arrow">arrow_forward</mat-icon>
+    </div>
+  </div>
+</article>

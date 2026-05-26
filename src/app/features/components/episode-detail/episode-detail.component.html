@@ -1,0 +1,70 @@
+<div class="detail-container">
+  <div class="detail-header">
+    <div class="badges">
+      <span class="badge season">Temporada {{ seasonNumber }}</span>
+      <span class="badge ep">Episodio {{ episodeNumber }}</span>
+    </div>
+    <button mat-icon-button class="close-btn" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="detail-body">
+    <h2 class="episode-title">{{ episode.name }}</h2>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <mat-icon>tv</mat-icon>
+        <div>
+          <span class="label">Código</span>
+          <span class="value code">{{ episode.episode }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <mat-icon>calendar_today</mat-icon>
+        <div>
+          <span class="label">Fecha de emisión</span>
+          <span class="value">{{ episode.air_date }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <mat-icon>people</mat-icon>
+        <div>
+          <span class="label">Personajes</span>
+          <span class="value">{{ episode.characters.length }} apariciones</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="characters-section">
+      <h3 class="section-title">
+        <mat-icon>group</mat-icon>
+        Personajes del episodio
+        @if (episode.characters.length > 12) {
+          <span class="limit-note">(mostrando 12 de {{ episode.characters.length }})</span>
+        }
+      </h3>
+
+      @if (charactersLoading) {
+        <app-loading-spinner [diameter]="36" message="Cargando personajes..." />
+      }
+
+      @if (!charactersLoading && characters.length) {
+        <div class="characters-grid">
+          @for (character of characters; track character.id) {
+            <div class="character-card">
+              <img [src]="character.image" [alt]="character.name" class="avatar" loading="lazy" />
+              <div class="character-info">
+                <span class="character-name">{{ character.name }}</span>
+                <div class="character-status">
+                  <span class="status-dot" [style.background]="getStatusColor(character.status)"></span>
+                  <span>{{ character.status }} · {{ character.species }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

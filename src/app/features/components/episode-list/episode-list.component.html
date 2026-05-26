@@ -1,0 +1,41 @@
+<section class="episode-list">
+  <app-episode-filters />
+
+  @if (error) {
+    <app-error-banner [message]="error" (dismissed)="onErrorDismissed()" />
+  }
+
+  @if (loading) {
+    <app-loading-spinner message="Cargando episodios..." />
+  }
+
+  @if (isEmpty) {
+    <div class="empty-state">
+      <span class="empty-icon">📡</span>
+      <h3>Sin resultados</h3>
+      <p>
+        @if (hasActiveFilters) {
+          No se encontraron episodios con los filtros aplicados.
+        } @else {
+          No hay episodios disponibles.
+        }
+      </p>
+    </div>
+  }
+
+  @if (!loading && episodes.length) {
+    <div class="episodes-grid">
+      @for (episode of episodes; track episode.id) {
+        <app-episode-card [episode]="episode" (selected)="onEpisodeSelected($event)" />
+      }
+    </div>
+
+    @if (totalPages > 1) {
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChanged)="onPageChanged($event)"
+      />
+    }
+  }
+</section>

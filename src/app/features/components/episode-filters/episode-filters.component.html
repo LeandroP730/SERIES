@@ -1,0 +1,46 @@
+<div class="filters-container">
+  <div class="filters-header">
+    @if (totalCount) {
+      <span class="results-count">
+        <strong>{{ totalCount }}</strong> episodios encontrados
+      </span>
+    }
+
+    <div class="header-actions">
+      <button mat-stroked-button class="toggle-btn" [class.active]="showFilters()" (click)="toggleFilters()">
+        <mat-icon>tune</mat-icon>
+        Filtros
+        @if (hasActiveFilters) {
+          <span class="active-dot"></span>
+        }
+      </button>
+    </div>
+  </div>
+
+  @if (showFilters()) {
+    <div class="filters-panel" [formGroup]="filtersForm">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Buscar por nombre</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput formControlName="name" placeholder="Ej: Pilot" autocomplete="off" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Filtrar por temporada</mat-label>
+        <mat-icon matPrefix>tv</mat-icon>
+        <mat-select formControlName="episode">
+          @for (season of seasons; track season.value) {
+            <mat-option [value]="season.value">{{ season.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      @if (hasActiveFilters) {
+        <button mat-stroked-button class="reset-btn" (click)="resetFilters()">
+          <mat-icon>restart_alt</mat-icon>
+          Limpiar
+        </button>
+      }
+    </div>
+  }
+</div>
