@@ -1,6 +1,6 @@
 # Rick & Morty — Explorador de Episodios
 
-Aplicación Angular 17 que consume la [Rick and Morty API](https://rickandmortyapi.com/) para explorar episodios de forma interactiva.
+Aplicación Angular 21 que consume la [Rick and Morty API](https://rickandmortyapi.com/) para explorar episodios de forma interactiva.
 
 ---
 
