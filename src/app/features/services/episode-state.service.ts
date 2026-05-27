@@ -20,7 +20,6 @@ export class EpisodeStateService {
   private readonly episodeService = inject(EpisodeService);
   private readonly characterService = inject(CharacterService);
 
-  // ── Estado público ────────────────────────────────────────────────────────
   readonly episodes        = signal<Episode[]>([]);
   readonly loading         = signal<boolean>(false);
   readonly error           = signal<string | null>(null);
@@ -36,9 +35,6 @@ export class EpisodeStateService {
     return f.name.trim().length > 0 || f.episode.trim().length > 0;
   });
 
-  // ── Canal único para disparar cargas ──────────────────────────────────────
-  // switchMap cancela cualquier petición en vuelo cuando llega una nueva,
-  // eliminando las condiciones de carrera entre búsquedas rápidas.
   private readonly loadTrigger$ = new Subject<LoadRequest>();
 
   constructor() {
@@ -54,7 +50,6 @@ export class EpisodeStateService {
               this.error.set(err.message ?? 'Ocurrió un error inesperado.');
               this.episodes.set([]);
               this.loading.set(false);
-              // Devolvemos null para que el flujo principal no muera
               return of(null);
             }),
           );
@@ -62,7 +57,7 @@ export class EpisodeStateService {
         takeUntilDestroyed(),
       )
       .subscribe((result) => {
-        if (!result) return; // error ya gestionado en catchError
+        if (!result) return; 
 
         const { response, page } = result;
         this.episodes.set(response.results);
@@ -72,8 +67,6 @@ export class EpisodeStateService {
         this.loading.set(false);
       });
   }
-
-  // ── API pública ───────────────────────────────────────────────────────────
 
   loadEpisodes(page = 1, filters: EpisodeFilters = { name: '', episode: '' }): void {
     this.loadTrigger$.next({ page, filters });

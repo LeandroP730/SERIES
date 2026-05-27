@@ -9,9 +9,6 @@ import { EpisodeService } from './episode.service';
 import { EpisodeApiResponse } from '../interfaces/episode.interface';
 import { environment } from '../../../environments/environment';
 
-// ──────────────────────────────────────────────────────────────────────────────
-// Datos de prueba
-// ──────────────────────────────────────────────────────────────────────────────
 const MOCK_RESPONSE: EpisodeApiResponse = {
   info: { count: 51, pages: 3, next: 'https://...', prev: null },
   results: [
@@ -27,9 +24,7 @@ const MOCK_RESPONSE: EpisodeApiResponse = {
   ],
 };
 
-// ──────────────────────────────────────────────────────────────────────────────
-// Suite
-// ──────────────────────────────────────────────────────────────────────────────
+
 describe('EpisodeService', () => {
   let service: EpisodeService;
   let httpMock: HttpTestingController;
