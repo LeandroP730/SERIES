@@ -73,7 +73,10 @@ export class EpisodeFiltersComponent implements OnInit {
   }
 
   resetFilters(): void {
-    this.filtersForm.reset({ name: '', episode: '' });
+    // { emitEvent: false } evita que valueChanges dispare setFilters()
+    // antes de que state.resetFilters() haga su propia carga,
+    // eliminando la doble petición redundante.
+    this.filtersForm.reset({ name: '', episode: '' }, { emitEvent: false });
     this.state.resetFilters();
   }
 }
